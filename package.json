@@ -1,7 +1,7 @@
 {
   "name": "kuber-backend",
   "version": "1.0.0",
-  "description": "This is the backend repository for the kuber app. ",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,17 +10,21 @@
     "type": "git",
     "url": "git+https://github.com/nash5/kuber-backend.git"
   },
-  "author": "Naresh/Vinay/Vinut",
+  "author": "vinay",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nash5/kuber-backend/issues"
   },
   "homepage": "https://github.com/nash5/kuber-backend#readme",
   "dependencies": {
-    "cors": "^2.8.5",
+    "async": "^2.6.1",
+    "bcrypt": "^3.0.2",
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "mongoose": "^5.3.9",
+    "nodemailer": "^4.6.8",
     "nodemon": "^1.18.5"
   }
 }
