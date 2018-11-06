@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const UserSchema = mongoose.Schema({
-    creditCard:Number,
-    debitCard:Number,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 }); 
  module.exports = mongoose.model('User', UserSchema);
 const Users = mongoose.model('user', UserSchema);
