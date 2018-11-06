@@ -1,17 +1,19 @@
 const express = require('express');
-require('dotenv').config();
 const app = express();
 
 const mongoose = require('mongoose');
+
+const cors = require('cors');
+app.use(cors());
+app.use(express.json());
+
+require('dotenv').config();
+
 
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, (err)=>{
     if(err) console.log('Could not Connect');
     else console.log("Successfully Connected");
 })
-
-
-const cors = require('cors');
-app.use(cors());
 
 const user = require('./router/router');
 app.use('/user', user);

@@ -7,3 +7,8 @@ const userSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('User', userSchema);
+const Users = mongoose.model('user', userSchema);
+module.exports = {
+        userModel: Users,
+        userSchema: userSchema
+    }
