@@ -1,38 +1,35 @@
 {
-  "name": "kuber-backend",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "This is the backend repository for the kuber app. ",
+  "description": "two crud operations",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": " ./node_modules/mocha/bin/mocha firstnameTest.js "
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nash5/kuber-backend.git"
-  },
-  "author": "Naresh/Vinay/Vinut",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nash5/kuber-backend/issues"
-  },
-  "homepage": "https://github.com/nash5/kuber-backend#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "mongoose": "^5.3.9",
-    "nodemon": "^1.18.5",
-    "bcryptjs": "*",
-    "body-parser": "*",
-    "connect-flash": "*",
-    "cookie-parser": "^1.4.1",
-    "express-handlebars": "*",
-    "express-messages": "*",
-    "express-session": "*",
-    "express-validator": "*",
-    "mongodb": "*",
-    "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*"
+    "async": "^2.6.1",
+    "bcrypt": "^3.0.2",
+    "brcrypt": "^1.0.7",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-flash": "0.0.2",
+    "g": "^2.0.1",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.13",
+    "mongoose-sequence": "^4.0.1",
+    "multer": "^1.4.1",
+    "nodemailer": "^4.6.8",
+    "xoauth2": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
   }
 }

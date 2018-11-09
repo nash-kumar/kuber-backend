@@ -1,45 +1,27 @@
 const mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-var UserSchema = mongoose.Schema({
-	firstname: {
-		type: String
-    },
-    lastname:{
-        type: String
-    },
-	password: {
-		type: String
-	},
-	email: {
-        type: String,
-        index:true
-	}
+const UserSchema = mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    email: { type: String, unique: true },
+    password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
-var User = module.exports = mongoose.model('User', UserSchema);
+UserSchema.pre('save', function (next) {
+    this.password = bcrypt.hashSync(this.password, saltRounds);
+    next();
+});
 
-module.exports.createUser = function(newUser, callback){
-	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(newUser.password, salt, function(err, hash) {
-	        newUser.password = hash;
-	        newUser.save(callback);
-	    });
-	});
-}
+module.exports = mongoose.model('User', UserSchema);
 
-module.exports.getUserByUsername = function(email, callback){
-	var query = {email: email};
-	User.findOne(query, callback);
-}
-
-module.exports.getUserById = function(id, callback){
-	User.findById(id, callback);
-}
-
-module.exports.comparePassword = function(candidatePassword, hash, callback){
-	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-    	if(err) throw err;
-    	callback(null, isMatch);
-	});
+const Users = mongoose.model('user', UserSchema);
+UserSchema.plugin(AutoIncrement, { inc_field: 'id' });
+module.exports = {
+    userModel: Users,
+    UserSchema: UserSchema
 }
