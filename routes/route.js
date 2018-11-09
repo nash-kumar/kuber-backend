@@ -7,9 +7,12 @@ const async = require('async');
 const nodemailer = require('nodemailer');
 const crypto=require('crypto');
 module.exports=router;
-const userModel=require('../model/model').userModel;
+// const userModel=require('../model/model').userModel;
+require('dotenv').config();
 
-
+var Email= process.env.email;
+var pass=process.env.password;
+var service=process.env.service;
 // POST CARD API
 router.post('/card', (req,res) => {
     if (req.body.data) {
@@ -69,12 +72,12 @@ router.post('/forgot', function (req, res, next) {
         function (token, user, done) {
             res.json({success: true});
             var smtpTransport = nodemailer.createTransport({
-                service: 'gmail',
+                service:service,
                 host: 'smtp.gmail.com',
                 port: 465,
                 auth: {
-                        user: 'accionlabs136@gmail.com',
-                        pass: 'accion136'
+                        user: Email,
+                        pass: pass
                 }
             });
             var mailOptions = {
@@ -88,9 +91,9 @@ router.post('/forgot', function (req, res, next) {
             };
             smtpTransport.sendMail(mailOptions, function (err,res) {
                if(err){
-                   console.log('Error',err);
+                   res.json({success:false , message :"Check the given email id"});
                } else{
-                   console.log('Email Sent');
+                   res.json({ success :true ,message :"Email sent "})
                }
             });
         }
@@ -138,22 +141,22 @@ router.post('/reset/:token', function(req, res) {
             host: 'smtp.gmail.com',
             port: 465,
             auth:  {
-            user: 'accionlabs136@gmail.com',
-            pass: 'accion136'
+            user: Email,
+            pass: pass
           }
         });
         var mailOptions = {
           to: user,
-          from: 'accionlabs136@gmail.com',
+          from: Email,
           subject: 'Your password has been changed',
           text: 'Hello,\n\n' +
             'This is a confirmation that the password for your account ' + user + ' has just been changed.\n'
         };
         smtpTransport.sendMail(mailOptions, function(err,res) {
             if(err){
-                console.log('Error',err);
+            res.json({success:false , message:"Kindly check your mail for instructions"})
             } else{
-                console.log('Email Sent');
+              res.json({success:true,message:"Email Sent"})
             }
         });
       }
