@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/nash5/kuber-backend#readme",
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "bcrypt": "^3.0.2",
     "cors": "^2.8.4",
     "crypto": "^1.0.1",
